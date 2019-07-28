@@ -35,11 +35,15 @@ h1{
     padding: auto;
 }
 #versus-board{
-    height: 300px;
+    height: 450px;
     width: 100%;
     color: var(--almost-white);
 }
 #fighters-to-choose{
+    width: 95%;
+    margin: -1rem auto 0 auto;
+}
+#player-1image, #player-2image{
     width: 85%;
     margin: 0 auto;
 }
@@ -54,7 +58,7 @@ h1{
     background-color: var(--almost-black);
     color: var(--almost-white);
     border: 1px solid var(--almost-white);
-    width: 6rem;
+    width: 10rem;
 }
 .fighter-img{
     height: 300px;
