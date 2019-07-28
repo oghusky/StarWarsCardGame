@@ -7,13 +7,13 @@ function Fighter(name, minPower, maxPower, special, type, health, image) {
     this.type = type;
     this.health = health;
     this.image = image;
-    this.attack = function () {
+    this.attack = () => {
         return Math.floor(Math.random() * (this.maxPower - this.minPower + 1)) + this.minPower;
     };
-    this.defense = function () {
+    this.defense = () => {
         return Math.floor(Math.random() * (this.maxPower - this.minPower + 1)) + this.minPower;
     };
-    this.saber = function (color) {
+    this.saber = color => {
         this.color = color;
         let green = "#00c851";
         let red = "#ff4444";
@@ -26,7 +26,12 @@ function Fighter(name, minPower, maxPower, special, type, health, image) {
 }
 // setting up game
 const Gameboard = {
+    // array where fighters go
     currentFighters: [],
+    // fighters health
+    player1Health: 100,
+    player2Health: 100,
+    // fighters
     availableFighters: [
         Yoda = new Fighter("Yoda", 90, 99, 100, "Jedi", 100, "https://omaharentalads.com/images/ear-transparent-yoda-1.png"),
         Mase = new Fighter("Mase Windu", 90, 99, 100, "Jedi", 100, "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b8d2b12-21e8-4931-8a6d-fb9ecdd60383/dcanbdi-cf1c078d-7155-4415-94a5-3e1506858a39.png/v1/fill/w_803,h_995,strp/star_wars_revenge_of_the_sith_mace_windu_png_by_metropolis_hero1125_dcanbdi-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAxMSIsInBhdGgiOiJcL2ZcLzViOGQyYjEyLTIxZTgtNDkzMS04YTZkLWZiOWVjZGQ2MDM4M1wvZGNhbmJkaS1jZjFjMDc4ZC03MTU1LTQ0MTUtOTRhNS0zZTE1MDY4NThhMzkucG5nIiwid2lkdGgiOiI8PTgxNiJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.bZ9GtZnIFyY5U6_evDZhDoFgtzN7fO0Kx1Jyq-PCHMk"),
@@ -35,7 +40,8 @@ const Gameboard = {
         Vader = new Fighter("Vader", 90, 99, 100, "Sith", 100, "https://i1.wp.com/freepngimages.com/wp-content/uploads/2015/11/darth-vader-transparent-image.png?fit=608%2C514"),
         Sidious = new Fighter("Sidious", 90, 99, 100, "Sith", 100, "https://vignette.wikia.nocookie.net/vsbattles/images/6/64/Darth_Sidious_Render.png/revision/latest?cb=20170810182252")
     ],
-    choosePlayer: document.addEventListener("click", function (e) {
+    // click event to choose fighters
+    choosePlayer: document.addEventListener("click", e => {
         for (let i = 0; i < Gameboard.availableFighters.length; i++) {
             if (e.target.innerText === Gameboard.availableFighters[i].name) {
                 Gameboard.currentFighters.push(Gameboard.availableFighters[i]);
@@ -43,16 +49,19 @@ const Gameboard = {
         }
         Gameboard.gameInit();
     }),
-    listFighters: function () {
+    // shows fighters names in buttons below the versus board
+    listFighters: () => {
         this.availableFighters.forEach((fighter) => {
             var fighterNameButton = $(`<button class="btn my-1 fighter-button">`);
             fighterNameButton.text(`${fighter.name}`);
             $("#fighters-to-choose").append(fighterNameButton);
         });
     },
-    gameInit: function () {
+    // shows fighters in versus board
+    gameInit: () => {
+        // inits only after 2 fighters chosen
         if (Gameboard.currentFighters.length === 2) {
-            $("#fighters-to-choose").hide();
+            $("#choose-title").css("visibility", "hidden");
             let player1 = $("#player-1image");
             let player2 = $("#player-2image");
             player1.html(`
@@ -69,14 +78,14 @@ const Gameboard = {
                 <h3 class="affiliation text-center">${this.currentFighters[1].type}</h3>
             `);
         }
+        // if user tries to choose more than 2 fighters
         if (Gameboard.currentFighters.length > 2) {
             console.log("You can't do that");
-            Gameboard.currentFighters.pop(this.currentFighters[3]);
+            Gameboard.currentFighters.pop(this.currentFighters[2]);
         }
     },
-    player1Health: 100,
-    player2Health: 100,
-    fight: function () {
+    // what happens when attack is clicked
+    fight: () => {
         let subtractP1Health = Math.ceil(this.currentFighters[1].defense() * 0.1);
         let subtractP2Health = Math.ceil(this.currentFighters[0].defense() * 0.1);
         if (this.currentFighters[0].attack() > this.currentFighters[1].defense()) {
@@ -93,11 +102,13 @@ const Gameboard = {
             console.log("good try");
         }
     },
-    shrinkHealthBar: function () {
-        $("#player1-bar").css({ "width": `${this.player1Health}%`, "background-color": `${this.currentFighters[0].saber()}`, "box-shadow": `0px 0px 5px 3px ${this.currentFighters[0].saber()}` });
-        $("#player2-bar").css({ "width": `${this.player2Health}%`, "background-color": `${this.currentFighters[1].saber()}`, "box-shadow": `0px 0px 5px 3px ${this.currentFighters[1].saber()}` });
+    // shrinks health bar after attack
+    shrinkHealthBar: () => {
+        $("#player1-bar").css({ "width": `${this.player1Health}%`, "background-color": `${this.currentFighters[0].saber()}`, "box-shadow": `1px 0px 5px 3px ${this.currentFighters[0].saber()}` });
+        $("#player2-bar").css({ "width": `${this.player2Health}%`, "background-color": `${this.currentFighters[1].saber()}`, "box-shadow": `-1px 0px 5px 3px ${this.currentFighters[1].saber()}` });
     },
-    pickWinner: function () {
+    // if health bar is zero
+    pickWinner: () => {
         if (this.player1Health <= 0) {
             console.log("Player 1 Lost");
         }
@@ -107,5 +118,6 @@ const Gameboard = {
     }
 
 }
+// lists fighters on load
 Gameboard.listFighters();
 

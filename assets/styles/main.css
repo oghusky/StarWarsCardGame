@@ -20,7 +20,7 @@ body,html{
 body{
     background-color: var(--almost-black);
 }
-h1{
+h1, h3{
     color: var(--almost-white);
     text-align: center;
 }
@@ -31,13 +31,12 @@ h1{
 #center-piece{
     height: 40px;
     width: 40px;
-    background: linear-gradient(90deg,#2e2e2e 30%, #e0e0e0);
-    padding: auto;
 }
 #versus-board{
-    height: 450px;
+    height: 410px;
     width: 100%;
     color: var(--almost-white);
+    margin-top: -1rem;
 }
 #fighters-to-choose{
     width: 95%;
@@ -85,4 +84,7 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+#choose-title{
+    margin-bottom: 1rem;
 }
