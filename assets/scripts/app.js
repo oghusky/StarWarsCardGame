@@ -82,11 +82,27 @@ const Gameboard = {
         if (this.currentFighters[0].attack() > this.currentFighters[1].defense()) {
             console.log("player2 got hit");
             console.log(this.player2Health -= subtractP2Health);
+            this.shrinkHealthBar();
+            this.pickWinner();
         } else if (this.currentFighters[1].attack() > this.currentFighters[0].defense()) {
             console.log("player1 got hit");
             console.log(this.player1Health -= subtractP1Health);
+            this.shrinkHealthBar();
+            this.pickWinner();
         } else {
             console.log("good try");
+        }
+    },
+    shrinkHealthBar: function () {
+        $("#player1-bar").css({ "width": `${this.player1Health}%`, "background-color": `${this.currentFighters[0].saber()}`, "box-shadow": `0px 0px 5px 3px ${this.currentFighters[0].saber()}` });
+        $("#player2-bar").css({ "width": `${this.player2Health}%`, "background-color": `${this.currentFighters[1].saber()}`, "box-shadow": `0px 0px 5px 3px ${this.currentFighters[1].saber()}` });
+    },
+    pickWinner: function () {
+        if (this.player1Health <= 0) {
+            console.log("Player 1 Lost");
+        }
+        if (this.player2Health <= 0) {
+            console.log("Player 2 Lost");
         }
     }
 
