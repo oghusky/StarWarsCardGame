@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Wars RPG</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- custom css -->
+    <link rel="stylesheet" href="./assets/styles/main.css">
+</head>
+
+<body>
+    <h1 class="game-title">Star Wars RPG</h1>
+    <!-- scoreboard -->
+    <section id="scores" class="row">
+        <div id="player-1health" class="col-sm-5"></div>
+        <div id="center-piece" class="container-fluid col-sm-2">
+            <div class="middle-center-piece"></div>
+        </div>
+        <div id="player-2health" class="col-sm-5"></div>
+    </section>
+    <section id="versus-board" class="row">
+        <div id="player-1image" class="col-sm-5 img-fluid"></div>
+        <div id="versus-image" class="col-sm-2 container-fluid">
+            <img id="versus-png" src="" alt="versus-png" class="img-fluid">
+        </div>
+        <div id="player-2image" class="col-sm-5 img-fluid"></div>
+    </section>
+    <section id="fighters-to-choose"></section>
+    <!-- Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- custom script -->
+    <script src="./assets/scripts/app.js"></script>
+</body>
+
+</html>

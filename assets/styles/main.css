@@ -1,0 +1,64 @@
+:root{
+    --almost-black: #2e2e2e;
+    --almost-white: #fafafa;
+    --gray:#e0e0e0;
+    --blue-saber: #038be5;
+    --green-saber: #00c851;
+    --red-saber: #ff4444;
+    --light-gold: #ffbb33;
+    --dark-gold: #ff8800;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body,html{
+    overflow-x: hidden;
+    width: 100%;
+}
+body{
+    background-color: var(--almost-black);
+}
+h1{
+    color: var(--almost-white);
+    text-align: center;
+}
+#versus-png{
+    display: block;
+    margin: 0 auto;
+}
+#center-piece{
+    height: 40px;
+    width: 40px;
+    background: linear-gradient(90deg,#2e2e2e 30%, #e0e0e0);
+    padding: auto;
+}
+#versus-board{
+    height: 300px;
+    width: 100%;
+    color: var(--almost-white);
+}
+#fighters-to-choose{
+    width: 85%;
+    margin: 0 auto;
+}
+.middle-center-piece{
+    height: 30px;
+    width: 90%;
+    background: linear-gradient(90deg, #ff8800 50%, #e0e0e0);
+    margin: auto;
+    position: absolute;
+}
+.fighter-button{
+    background-color: var(--almost-black);
+    color: var(--almost-white);
+    border: 1px solid var(--almost-white);
+    width: 6rem;
+}
+.fighter-img{
+    height: 300px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
