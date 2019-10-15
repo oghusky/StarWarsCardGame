@@ -7,10 +7,10 @@ function Fighter(name, minPower, maxPower, special, type, health, image) {
     this.type = type;
     this.health = health;
     this.image = image;
-    this.attack = () => {
+    this.attack = function () {
         return Math.floor(Math.random() * (this.maxPower - this.minPower + 1)) + this.minPower;
     };
-    this.defense = () => {
+    this.defense = function () {
         return Math.floor(Math.random() * (this.maxPower - this.minPower + 1)) + this.minPower;
     };
     this.saber = color => {
@@ -50,7 +50,7 @@ const Gameboard = {
         Gameboard.gameInit();
     }),
     // shows fighters names in buttons below the versus board
-    listFighters: () => {
+    listFighters: function () {
         this.availableFighters.forEach((fighter) => {
             var fighterNameButton = $(`<button class="btn my-1 fighter-button">`);
             fighterNameButton.text(`${fighter.name}`);
@@ -58,7 +58,7 @@ const Gameboard = {
         });
     },
     // shows fighters in versus board
-    gameInit: () => {
+    gameInit: function () {
         // inits only after 2 fighters chosen
         if (Gameboard.currentFighters.length === 2) {
             $("#choose-title").css("visibility", "hidden");
@@ -85,7 +85,7 @@ const Gameboard = {
         }
     },
     // what happens when attack is clicked
-    fight: () => {
+    fight: function () {
         let subtractP1Health = Math.ceil(this.currentFighters[1].defense() * 0.1);
         let subtractP2Health = Math.ceil(this.currentFighters[0].defense() * 0.1);
         if (this.currentFighters[0].attack() > this.currentFighters[1].defense()) {
@@ -103,12 +103,12 @@ const Gameboard = {
         }
     },
     // shrinks health bar after attack
-    shrinkHealthBar: () => {
+    shrinkHealthBar: function () {
         $("#player1-bar").css({ "width": `${this.player1Health}%`, "background-color": `${this.currentFighters[0].saber()}`, "box-shadow": `1px 0px 5px 3px ${this.currentFighters[0].saber()}` });
         $("#player2-bar").css({ "width": `${this.player2Health}%`, "background-color": `${this.currentFighters[1].saber()}`, "box-shadow": `-1px 0px 5px 3px ${this.currentFighters[1].saber()}` });
     },
     // if health bar is zero
-    pickWinner: () => {
+    pickWinner: function () {
         if (this.player1Health <= 0) {
             console.log("Player 1 Lost");
         }
