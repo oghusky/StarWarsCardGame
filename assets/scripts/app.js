@@ -51,7 +51,7 @@ const Gameboard = {
     }),
     // shows fighters names in buttons below the versus board
     listFighters: function () {
-        this.availableFighters.forEach((fighter) => {
+        Gameboard.availableFighters.map((fighter) => {
             var fighterNameButton = $(`<button class="btn my-1 fighter-button">`);
             fighterNameButton.text(`${fighter.name}`);
             $("#fighters-to-choose").append(fighterNameButton);
